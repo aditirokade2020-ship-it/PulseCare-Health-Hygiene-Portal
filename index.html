@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PulseCare - Health & Hygiene Portal</title>
+    <meta name="description" content="Interactive Health & Hygiene Guide: Personal hygiene habits, disease symptoms & prevention, interactive BMI calculator, and quick first aid guide.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+                <span class="brand-name">Pulse<span class="brand-highlight">Care</span></span>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="global-search" placeholder="Search hygiene, diseases, symptoms, first aid..." autocomplete="off">
+                <button id="clear-search" class="clear-btn" hidden><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Nav Links -->
+            <nav class="nav-links">
+                <a href="#personal-hygiene" class="nav-link active" data-section="personal-hygiene">
+                    <i class="fa-solid fa-shower"></i> Personal Hygiene
+                </a>
+                <a href="#diseases" class="nav-link" data-section="diseases">
+                    <i class="fa-solid fa-virus"></i> Diseases & Cure
+                </a>
+                <a href="#bmi-calculator" class="nav-link" data-section="bmi-calculator">
+                    <i class="fa-solid fa-calculator"></i> BMI Calculator
+                </a>
+                <a href="#first-aid" class="nav-link" data-section="first-aid">
+                    <i class="fa-solid fa-kit-medical"></i> First Aid
+                </a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="nav-actions">
+                <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Results Overlay Container -->
+    <div id="search-results-modal" class="search-modal hidden">
+        <div class="search-modal-content">
+            <div class="search-modal-header">
+                <h3><i class="fa-solid fa-magnifying-glass"></i> Search Results (<span id="search-count">0</span>)</h3>
+                <button id="close-search-modal" class="close-btn">&times;</button>
+            </div>
+            <div id="search-results-list" class="search-results-grid"></div>
+        </div>
+    </div>
+
+    <!-- Hero Banner -->
+    <section class="hero-section">
+        <div class="hero-bg-blobs">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="hero-badge"><i class="fa-solid fa-shield-halved"></i> Comprehensive Health & Wellness Portal</span>
+                <h1 class="hero-title">Your Complete Guide to <span class="gradient-text">Health, Hygiene & Emergency Care</span></h1>
+                <p class="hero-subtitle">Empowering you with daily cleanliness practices, disease awareness, interactive BMI analytics, and emergency first-aid protocols.</p>
+                <div class="hero-cta-group">
+                    <a href="#bmi-calculator" class="btn btn-primary"><i class="fa-solid fa-calculator"></i> Calculate BMI Now</a>
+                    <a href="#first-aid" class="btn btn-outline"><i class="fa-solid fa-kit-medical"></i> Emergency First Aid</a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-icon hygiene-color"><i class="fa-solid fa-hand-holding-droplet"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-num">3+</span>
+                        <span class="stat-label">Hygiene Modules</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon disease-color"><i class="fa-solid fa-stethoscope"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-num">4</span>
+                        <span class="stat-label">Major Diseases Covered</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon bmi-color"><i class="fa-solid fa-weight-scale"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-num">6</span>
+                        <span class="stat-label">BMI Classifications</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon aid-color"><i class="fa-solid fa-bandage"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-num">100%</span>
+                        <span class="stat-label">Actionable Protocols</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="main-container">
+
+        <!-- SECTION 1: PERSONAL HYGIENE -->
+        <section id="personal-hygiene" class="app-section active-section">
+            <div class="section-header">
+                <div class="section-title-wrap">
+                    <span class="section-tag"><i class="fa-solid fa-sparkles"></i> Section 1</span>
+                    <h2 class="section-title">Personal Hygiene</h2>
+                    <p class="section-desc">Personal hygiene means keeping your body clean and healthy to prevent infections, unpleasant odors, and diseases while boosting confidence and well-being.</p>
+                </div>
+            </div>
+
+            <!-- Hygiene Sub-navigation Tabs -->
+            <div class="subnav-tabs">
+                <button class="subnav-btn active" data-target="hygiene-importance">
+                    <i class="fa-solid fa-circle-check"></i> Why Hygiene Matters
+                </button>
+                <button class="subnav-btn" data-target="hygiene-body">
+                    <i class="fa-solid fa-shower"></i> Body Hygiene
+                </button>
+                <button class="subnav-btn" data-target="hygiene-oral">
+                    <i class="fa-solid fa-tooth"></i> Oral & Grooming
+                </button>
+            </div>
+
+            <!-- Subnav Content 1: Importance -->
+            <div id="hygiene-importance" class="subnav-content active-content">
+                <div class="importance-banner">
+                    <div class="banner-text">
+                        <h3><i class="fa-solid fa-heart"></i> Clean Body + Clean Clothes + Clean Habits</h3>
+                        <p>= Better Hygiene & Better Health for Life!</p>
+                    </div>
+                </div>
+                <div class="grid-cards three-col">
+                    <div class="info-card hover-lift">
+                        <div class="card-badge-icon badge-teal"><i class="fa-solid fa-virus-slash"></i></div>
+                        <h4>Prevent Germ Spread</h4>
+                        <p>Stops the transmission of harmful bacteria, viruses, and pathogens causing daily infections.</p>
+                    </div>
+                    <div class="info-card hover-lift">
+                        <div class="card-badge-icon badge-blue"><i class="fa-solid fa-pump-soap"></i></div>
+                        <h4>Skin & Hair Care</h4>
+                        <p>Removes environmental pollutants, dead skin cells, and sweat accumulations effortlessly.</p>
+                    </div>
+                    <div class="info-card hover-lift">
+                        <div class="card-badge-icon badge-cyan"><i class="fa-solid fa-tooth"></i></div>
+                        <h4>Dental Protection</h4>
+                        <p>Prevents cavities, gingivitis, tartar buildup, and premature tooth decay.</p>
+                    </div>
+                    <div class="info-card hover-lift">
+                        <div class="card-badge-icon badge-rose"><i class="fa-solid fa-wind"></i></div>
+                        <h4>Odor Control</h4>
+                        <p>Eliminates sweat-loving bacteria responsible for body and mouth odor throughout the day.</p>
+                    </div>
+                    <div class="info-card hover-lift">
+                        <div class="card-badge-icon badge-emerald"><i class="fa-solid fa-person-running"></i></div>
+                        <h4>Physical Health</h4>
+                        <p>Supports robust immune system performance and active daily physical energy.</p>
+                    </div>
+                    <div class="info-card hover-lift">
+                        <div class="card-badge-icon badge-amber"><i class="fa-solid fa-face-smile"></i></div>
+                        <h4>Self Confidence</h4>
+                        <p>Enhances personal comfort, social interaction assurance, and positive mental well-being.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subnav Content 2: Body Hygiene -->
+            <div id="hygiene-body" class="subnav-content">
+                <div class="grid-cards two-col">
+                    <div class="guide-card">
+                        <div class="guide-number">01</div>
+                        <div class="guide-content">
+                            <h3><i class="fa-solid fa-bath"></i> Bathe Regularly</h3>
+                            <p>Take a bath or shower regularly, especially after exercising or heavy sweating. Pay special attention to areas prone to sweat accumulation such as underarms, neck, feet, and skin folds.</p>
+                            <ul class="check-list">
+                                <li><i class="fa-solid fa-check"></i> Clean skin folds and underarms thoroughly</li>
+                                <li><i class="fa-solid fa-check"></i> Rinse off all soap residues completely</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="guide-card">
+                        <div class="guide-number">02</div>
+                        <div class="guide-content">
+                            <h3><i class="fa-solid fa-shirt"></i> Wear Clean Clothes</h3>
+                            <p>Change your clothes daily or immediately after sweating. Wash undergarments frequently and ensure all garments are completely dry before wearing to avoid fungal growth.</p>
+                            <ul class="check-list">
+                                <li><i class="fa-solid fa-check"></i> Wear breathable cotton fabrics</li>
+                                <li><i class="fa-solid fa-check"></i> Ensure clothes dry thoroughly in sunlight/heat</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="guide-card">
+                        <div class="guide-number">03</div>
+                        <div class="guide-content">
+                            <h3><i class="fa-solid fa-soap"></i> Keep Your Skin Clean</h3>
+                            <p>Wash away daily sweat, environmental dirt, and excess sebum. Use mild skin-cleansing products suitable for your skin type and avoid harsh chemicals that cause irritation.</p>
+                            <ul class="check-list">
+                                <li><i class="fa-solid fa-check"></i> Moisturize skin after bathing</li>
+                                <li><i class="fa-solid fa-check"></i> Avoid harsh synthetic soaps</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="guide-card">
+                        <div class="guide-number">04</div>
+                        <div class="guide-content">
+                            <h3><i class="fa-solid fa-shoe-prints"></i> Take Care of Your Feet</h3>
+                            <p>Wash your feet daily and dry them thoroughly, particularly between the toes. Wear clean, dry socks and ensure your footwear is given time to air out between uses.</p>
+                            <ul class="check-list">
+                                <li><i class="fa-solid fa-check"></i> Dry thoroughly between toes</li>
+                                <li><i class="fa-solid fa-check"></i> Change socks daily</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subnav Content 3: Oral & Grooming -->
+            <div id="hygiene-oral" class="subnav-content">
+                <div class="grid-cards three-col">
+                    <div class="groom-card">
+                        <div class="groom-icon"><i class="fa-solid fa-tooth"></i></div>
+                        <h4>1. Brush Twice Daily</h4>
+                        <p>Brush your teeth for at least 2 minutes in the morning and before bed using fluoride toothpaste.</p>
+                    </div>
+
+                    <div class="groom-card">
+                        <div class="groom-icon"><i class="fa-solid fa-comment-medical"></i></div>
+                        <h4>2. Clean Your Tongue</h4>
+                        <p>Gently clean your tongue with a scraper or brush to remove odor-causing bacteria.</p>
+                    </div>
+
+                    <div class="groom-card">
+                        <div class="groom-icon"><i class="fa-solid fa-teeth-open"></i></div>
+                        <h4>3. Floss Regularly</h4>
+                        <p>Remove trapped food particles and plaque from interdental gaps where brushes cannot reach.</p>
+                    </div>
+
+                    <div class="groom-card">
+                        <div class="groom-icon"><i class="fa-solid fa-scissors"></i></div>
+                        <h4>4. Hair Care</h4>
+                        <p>Wash hair according to your specific hair type and sanitize combs and brushes regularly.</p>
+                    </div>
+
+                    <div class="groom-card">
+                        <div class="groom-icon"><i class="fa-solid fa-hand"></i></div>
+                        <h4>5. Nail Care</h4>
+                        <p>Keep fingernails and toenails clean and trimmed neatly. Avoid biting nails or picking cuticles.</p>
+                    </div>
+
+                    <div class="groom-card">
+                        <div class="groom-icon"><i class="fa-solid fa-user-check"></i></div>
+                        <h4>6. Personal Grooming & Skin</h4>
+                        <p>Groom facial/body hair clean and apply suitable moisturizer to maintain skin moisture barrier.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 2: DISEASES AND THEIR CURE -->
+        <section id="diseases" class="app-section">
+            <div class="section-header">
+                <div class="section-title-wrap">
+                    <span class="section-tag"><i class="fa-solid fa-virus"></i> Section 2</span>
+                    <h2 class="section-title">Diseases & Their Cure</h2>
+                    <p class="section-desc">Learn key symptoms, preventive measures, and recommended medical care for common illnesses.</p>
+                </div>
+            </div>
+
+            <!-- Disease Selector Chips -->
+            <div class="disease-chips">
+                <button class="chip-btn active" data-disease="cold">
+                    <i class="fa-solid fa-head-side-cough"></i> Common Cold & Flu
+                </button>
+                <button class="chip-btn" data-disease="dengue">
+                    <i class="fa-solid fa-mosquito"></i> Dengue Fever
+                </button>
+                <button class="chip-btn" data-disease="obesity">
+                    <i class="fa-solid fa-weight-scale"></i> Obesity
+                </button>
+                <button class="chip-btn" data-disease="anemia">
+                    <i class="fa-solid fa-droplet"></i> Anemia
+                </button>
+            </div>
+
+            <!-- Disease Detail Panels -->
+            <div class="disease-container">
+
+                <!-- Disease 1: Cold & Flu -->
+                <div id="disease-cold" class="disease-panel active-panel">
+                    <div class="panel-header">
+                        <div class="panel-title-group">
+                            <i class="fa-solid fa-head-side-cough disease-main-icon"></i>
+                            <div>
+                                <h3>Common Cold & Flu</h3>
+                                <span class="viral-tag"><i class="fa-solid fa-circle-info"></i> Viral Infection</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="disease-grid">
+                        <div class="d-card card-symptoms">
+                            <h4><i class="fa-solid fa-triangle-exclamation"></i> Symptoms</h4>
+                            <ul>
+                                <li><i class="fa-solid fa-angle-right"></i> Runny or blocked nose</li>
+                                <li><i class="fa-solid fa-angle-right"></i> Frequent sneezing</li>
+                                <li><i class="fa-solid fa-angle-right"></i> Sore throat & irritation</li>
+                                <li><i class="fa-solid fa-angle-right"></i> Persistent dry or wet cough</li>
+                                <li><i class="fa-solid fa-angle-right"></i> Mild headache & tiredness</li>
+                                <li><i class="fa-solid fa-angle-right"></i> Low-grade fever (occasionally)</li>
+                            </ul>
+                        </div>
+
+                        <div class="d-card card-prevention">
+                            <h4><i class="fa-solid fa-shield-virus"></i> Prevention</h4>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Wash hands regularly with soap</li>
+                                <li><i class="fa-solid fa-check"></i> Cover mouth & nose when coughing/sneezing</li>
+                                <li><i class="fa-solid fa-check"></i> Avoid touching eyes, nose, or mouth</li>
+                                <li><i class="fa-solid fa-check"></i> Avoid close contact with sick individuals</li>
+                                <li><i class="fa-solid fa-check"></i> Disinfect frequently touched surfaces</li>
+                            </ul>
+                        </div>
+
+                        <div class="d-card card-treatment full-width">
+                            <h4><i class="fa-solid fa-kit-medical"></i> Treatment & Care</h4>
+                            <p>There is usually <strong>no specific antiviral cure</strong> for the common cold. Most individuals recover naturally within 7–10 days.</p>
+                            <div class="tips-box">
+                                <span class="tip-item"><i class="fa-solid fa-bed"></i> Ample Rest</span>
+                                <span class="tip-item"><i class="fa-solid fa-glass-water"></i> Hydration & Warm Fluids</span>
+                                <span class="tip-item"><i class="fa-solid fa-pills"></i> Symptom Relief</span>
+                            </div>
+                            <div class="alert-box alert-note">
+                                <i class="fa-solid fa-circle-exclamation"></i> <strong>Note:</strong> Antibiotics kill bacteria and do NOT treat viral colds or flu.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Disease 2: Dengue -->
+                <div id="disease-dengue" class="disease-panel">
+                    <div class="panel-header">
+                        <div class="panel-title-group">
+                            <i class="fa-solid fa-mosquito disease-main-icon rose-icon"></i>
+                            <div>
+                                <h3>Dengue Fever</h3>
+                                <span class="viral-tag warning-tag"><i class="fa-solid fa-bug"></i> Mosquito-Borne Virus</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="disease-grid">
+                        <div class="d-card card-symptoms">
+                            <h4><i class="fa-solid fa-triangle-exclamation"></i> Symptoms</h4>
+                            <ul>
+                                <li><i class="fa-solid fa-angle-right"></i> Sudden high fever</li>
+                                <li><i class="fa-solid fa-angle-right"></i> Severe headache & retro-orbital pain (behind eyes)</li>
+                                <li><i class="fa-solid fa-angle-right"></i> Intense muscle and joint pain ("breakbone fever")</li>
+                                <li><i class="fa-solid fa-angle-right"></i> Nausea, vomiting & loss of appetite</li>
+                                <li><i class="fa-solid fa-angle-right"></i> Skin rash & extreme fatigue</li>
+                            </ul>
+                        </div>
+
+                        <div class="d-card card-prevention">
+                            <h4><i class="fa-solid fa-shield-virus"></i> Prevention</h4>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Apply mosquito repellents (DEET/Picaridin)</li>
+                                <li><i class="fa-solid fa-check"></i> Wear full-sleeved shirts and long pants</li>
+                                <li><i class="fa-solid fa-check"></i> Use window screens and bed nets</li>
+                                <li><i class="fa-solid fa-check"></i> Eliminate standing water to stop mosquito breeding</li>
+                                <li><i class="fa-solid fa-check"></i> Keep living surroundings clean and dry</li>
+                            </ul>
+                        </div>
+
+                        <div class="d-card card-treatment full-width">
+                            <h4><i class="fa-solid fa-kit-medical"></i> Treatment & Care</h4>
+                            <p>There is no specific antiviral treatment for Dengue. Care focuses on fluid replenishment, rest, and close medical monitoring.</p>
+                            <div class="alert-box alert-danger">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                <div>
+                                    <strong>⚠️ Severe Dengue Warning Signs:</strong>
+                                    <p>Severe abdominal pain, persistent vomiting, mucosal bleeding, extreme weakness, or difficulty breathing require <strong>immediate emergency medical attention</strong>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Disease 3: Obesity -->
+                <div id="disease-obesity" class="disease-panel">
+                    <div class="panel-header">
+                        <div class="panel-title-group">
+                            <i class="fa-solid fa-weight-scale disease-main-icon amber-icon"></i>
+                            <div>
+                                <h3>Obesity</h3>
+                                <span class="viral-tag amber-tag"><i class="fa-solid fa-heart-pulse"></i> Metabolic Condition</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="disease-grid">
+                        <div class="d-card card-symptoms">
+                            <h4><i class="fa-solid fa-triangle-exclamation"></i> Risk Factors</h4>
+                            <ul>
+                                <li><i class="fa-solid fa-angle-right"></i> Excess calorie intake over long periods</li>
+                                <li><i class="fa-solid fa-angle-right"></i> Sedentary lifestyle & lack of physical activity</li>
+                                <li><i class="fa-solid fa-angle-right"></i> High consumption of ultra-processed foods</li>
+                                <li><i class="fa-solid fa-angle-right"></i> Poor sleep quality & chronic stress</li>
+                                <li><i class="fa-solid fa-angle-right"></i> Genetic, endocrine & environmental factors</li>
+                            </ul>
+                        </div>
+
+                        <div class="d-card card-prevention">
+                            <h4><i class="fa-solid fa-shield-virus"></i> Prevention & Habits</h4>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Consume a nutrient-dense balanced diet</li>
+                                <li><i class="fa-solid fa-check"></i> Engage in 150+ mins of physical activity weekly</li>
+                                <li><i class="fa-solid fa-check"></i> Stay well-hydrated throughout the day</li>
+                                <li><i class="fa-solid fa-check"></i> Maintain consistent, healthy sleep schedules</li>
+                                <li><i class="fa-solid fa-check"></i> Make gradual, long-term sustainable changes</li>
+                            </ul>
+                        </div>
+
+                        <div class="d-card card-treatment full-width">
+                            <h4><i class="fa-solid fa-kit-medical"></i> Medical Management</h4>
+                            <p>Treatment is personalized and may involve dietary restructuring, behavioral support, physical therapy, medical intervention, or bariatric surgery under expert guidance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Disease 4: Anemia -->
+                <div id="disease-anemia" class="disease-panel">
+                    <div class="panel-header">
+                        <div class="panel-title-group">
+                            <i class="fa-solid fa-droplet disease-main-icon blue-icon"></i>
+                            <div>
+                                <h3>Anemia</h3>
+                                <span class="viral-tag blue-tag"><i class="fa-solid fa-vial"></i> Blood & Deficiency Condition</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="disease-grid">
+                        <div class="d-card card-symptoms">
+                            <h4><i class="fa-solid fa-triangle-exclamation"></i> Symptoms</h4>
+                            <ul>
+                                <li><i class="fa-solid fa-angle-right"></i> Chronic fatigue and muscle weakness</li>
+                                <li><i class="fa-solid fa-angle-right"></i> Pale skin, gums, or inner eye linings</li>
+                                <li><i class="fa-solid fa-angle-right"></i> Dizziness, lightheadedness & headaches</li>
+                                <li><i class="fa-solid fa-angle-right"></i> Shortness of breath during light tasks</li>
+                                <li><i class="fa-solid fa-angle-right"></i> Feeling unusually cold in hands/feet</li>
+                            </ul>
+                        </div>
+
+                        <div class="d-card card-prevention">
+                            <h4><i class="fa-solid fa-shield-virus"></i> Prevention & Nutrition</h4>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Eat iron-rich foods (spinach, lentils, beans)</li>
+                                <li><i class="fa-solid fa-check"></i> Pair plant iron with Vitamin C for optimal absorption</li>
+                                <li><i class="fa-solid fa-check"></i> Maintain a varied, balanced daily diet</li>
+                                <li><i class="fa-solid fa-check"></i> Consult doctors regarding heavy menstrual blood loss</li>
+                            </ul>
+                        </div>
+
+                        <div class="d-card card-treatment full-width">
+                            <h4><i class="fa-solid fa-kit-medical"></i> Treatment & Care</h4>
+                            <p>Treatment depends on identifying the exact cause (e.g. iron deficiency, vitamin B12 deficiency, chronic blood loss). Iron supplements should be taken under medical supervision.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- SECTION 3: BMI CALCULATOR -->
+        <section id="bmi-calculator" class="app-section">
+            <div class="section-header">
+                <div class="section-title-wrap">
+                    <span class="section-tag"><i class="fa-solid fa-calculator"></i> Section 3</span>
+                    <h2 class="section-title">Interactive BMI Calculator</h2>
+                    <p class="section-desc">Body Mass Index (BMI) evaluates your body weight relative to your height. Calculate your score and view personalized medical guidance instantly.</p>
+                </div>
+            </div>
+
+            <div class="bmi-wrapper">
+                <!-- BMI Form Input Card -->
+                <div class="bmi-card bmi-input-card">
+                    <h3><i class="fa-solid fa-sliders"></i> Enter Your Details</h3>
+
+                    <!-- Unit Switcher -->
+                    <div class="unit-toggle">
+                        <button id="unit-metric" class="unit-btn active">Meters / Kilograms</button>
+                        <button id="unit-cm" class="unit-btn">Centimeters / Kilograms</button>
+                    </div>
+
+                    <form id="bmi-form" onsubmit="return false;">
+                        <div class="form-group">
+                            <label for="height-input">Height (<span id="height-unit-label">meters</span>):</label>
+                            <div class="input-with-icon">
+                                <i class="fa-solid fa-ruler-vertical"></i>
+                                <input type="number" id="height-input" step="0.01" min="0.5" max="3" placeholder="e.g. 1.75" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="weight-input">Weight (kg):</label>
+                            <div class="input-with-icon">
+                                <i class="fa-solid fa-weight-scale"></i>
+                                <input type="number" id="weight-input" step="0.1" min="10" max="300" placeholder="e.g. 70" required>
+                            </div>
+                        </div>
+
+                        <button type="button" id="calc-bmi-btn" class="btn btn-primary btn-block">
+                            <i class="fa-solid fa-calculator"></i> Calculate BMI
+                        </button>
+                    </form>
+                </div>
+
+                <!-- BMI Result Display Card -->
+                <div class="bmi-card bmi-result-card">
+                    <h3><i class="fa-solid fa-chart-pie"></i> Your BMI Result</h3>
+
+                    <div id="bmi-empty-state" class="empty-state">
+                        <i class="fa-solid fa-gauge-high empty-icon"></i>
+                        <p>Enter your height and weight above to compute your BMI score & category.</p>
+                    </div>
+
+                    <div id="bmi-result-content" class="result-content hidden">
+                        <!-- Score Banner -->
+                        <div class="bmi-score-display">
+                            <span class="score-label">BMI Score</span>
+                            <span id="bmi-val" class="score-number">--.-</span>
+                            <span id="bmi-category" class="bmi-badge">--</span>
+                        </div>
+
+                        <!-- Gauge Visual Bar -->
+                        <div class="bmi-meter-wrapper">
+                            <div class="bmi-meter-bar">
+                                <div class="meter-segment seg-under" title="Underweight (<18.5)"></div>
+                                <div class="meter-segment seg-normal" title="Healthy (18.5-24.9)"></div>
+                                <div class="meter-segment seg-over" title="Overweight (25-29.9)"></div>
+                                <div class="meter-segment seg-ob1" title="Obesity Class 1 (30-34.9)"></div>
+                                <div class="meter-segment seg-ob2" title="Obesity Class 2 (35-39.9)"></div>
+                                <div class="meter-segment seg-ob3" title="Obesity Class 3 (≥40)"></div>
+                            </div>
+                            <div id="meter-needle" class="meter-pointer" style="left: 0%;">
+                                <i class="fa-solid fa-caret-down"></i>
+                            </div>
+                        </div>
+
+                        <!-- Ideal Weight Range & Advice -->
+                        <div class="bmi-advice-box">
+                            <p id="bmi-ideal-text"><i class="fa-solid fa-bullseye"></i> Ideal Weight Range: <strong>--</strong></p>
+                            <p id="bmi-recommendation">--</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BMI Categories Table Reference -->
+            <div class="table-container">
+                <h3><i class="fa-solid fa-table-list"></i> Official World Health Organization BMI Categories</h3>
+                <table class="bmi-table">
+                    <thead>
+                        <tr>
+                            <th>BMI Range (kg/m²)</th>
+                            <th>Category Classification</th>
+                            <th>Health Risk Indicator</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="row-under">
+                            <td>&lt; 18.5</td>
+                            <td><span class="status-pill pill-under">Underweight</span></td>
+                            <td>Risk of nutritional deficiency & osteoporosis</td>
+                        </tr>
+                        <tr class="row-normal">
+                            <td>18.5 – 24.9</td>
+                            <td><span class="status-pill pill-normal">Healthy Weight</span></td>
+                            <td>Optimal balance & lowest health risk profile</td>
+                        </tr>
+                        <tr class="row-over">
+                            <td>25.0 – 29.9</td>
+                            <td><span class="status-pill pill-over">Overweight</span></td>
+                            <td>Increased risk of cardiovascular issues</td>
+                        </tr>
+                        <tr class="row-ob1">
+                            <td>30.0 – 34.9</td>
+                            <td><span class="status-pill pill-ob1">Obesity Class 1</span></td>
+                            <td>Moderate risk for diabetes & hypertension</td>
+                        </tr>
+                        <tr class="row-ob2">
+                            <td>35.0 – 39.9</td>
+                            <td><span class="status-pill pill-ob2">Obesity Class 2</span></td>
+                            <td>Severe health risk profile</td>
+                        </tr>
+                        <tr class="row-ob3">
+                            <td>&ge; 40.0</td>
+                            <td><span class="status-pill pill-ob3">Obesity Class 3</span></td>
+                            <td>Very severe / High complication risk</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+
+        <!-- SECTION 4: FIRST AID -->
+        <section id="first-aid" class="app-section">
+            <div class="section-header">
+                <div class="section-title-wrap">
+                    <span class="section-tag"><i class="fa-solid fa-kit-medical"></i> Section 4</span>
+                    <h2 class="section-title">Emergency First Aid Guide</h2>
+                    <p class="section-desc">Immediate actions to stabilize injuries before professional medical services arrive.</p>
+                </div>
+            </div>
+
+            <div class="grid-cards three-col">
+
+                <!-- First Aid 1: Burns -->
+                <div class="aid-card">
+                    <div class="aid-header header-burn">
+                        <i class="fa-solid fa-fire-flame-curved"></i>
+                        <h3>Burns</h3>
+                    </div>
+                    <div class="aid-body">
+                        <div class="aid-block block-do">
+                            <h4><i class="fa-solid fa-circle-check"></i> What to Do:</h4>
+                            <ul>
+                                <li>Move away from heat source immediately.</li>
+                                <li>Cool under cool running water for at least <strong>20 minutes</strong>.</li>
+                                <li>Remove jewelry or tight items near area (if not stuck to skin).</li>
+                                <li>Cover loosely with a clean, non-fluffy dressing or cling wrap.</li>
+                            </ul>
+                        </div>
+
+                        <div class="aid-block block-dont">
+                            <h4><i class="fa-solid fa-circle-xmark"></i> What NOT to Do:</h4>
+                            <ul>
+                                <li>Do NOT apply ice directly to skin.</li>
+                                <li>Do NOT apply butter, toothpaste, or oils.</li>
+                                <li>Do NOT break or puncture blisters.</li>
+                            </ul>
+                        </div>
+
+                        <div class="aid-block block-seek">
+                            <h4><i class="fa-solid fa-hospital"></i> Seek Medical Help If:</h4>
+                            <p>Burn is large, deep, electrical, chemical, or involves face, hands, feet, genitals, or major joints.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- First Aid 2: Cuts & Wounds -->
+                <div class="aid-card">
+                    <div class="aid-header header-cut">
+                        <i class="fa-solid fa-hand-holding-medical"></i>
+                        <h3>Cuts & Wounds</h3>
+                    </div>
+                    <div class="aid-body">
+                        <div class="aid-block block-do">
+                            <h4><i class="fa-solid fa-circle-check"></i> What to Do:</h4>
+                            <ul>
+                                <li>Wash hands thoroughly with soap before treating.</li>
+                                <li>Apply gentle, firm pressure with clean gauze/cloth to stop bleeding.</li>
+                                <li>Clean wound gently under clean running water.</li>
+                                <li>Cover with a sterile dressing or clean bandage.</li>
+                            </ul>
+                        </div>
+
+                        <div class="aid-block block-dont">
+                            <h4><i class="fa-solid fa-circle-xmark"></i> What NOT to Do:</h4>
+                            <ul>
+                                <li>Do NOT probe deep wounds with unsterilized tools.</li>
+                                <li>Do NOT scrub deep cut surfaces aggressively.</li>
+                            </ul>
+                        </div>
+
+                        <div class="aid-block block-seek">
+                            <h4><i class="fa-solid fa-hospital"></i> Seek Medical Help If:</h4>
+                            <p>Bleeding is heavy or fails to stop after 10 mins, wound is deep/gaping, or shows redness, heat, and pus (infection).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- First Aid 3: Sprains & Strains -->
+                <div class="aid-card">
+                    <div class="aid-header header-sprain">
+                        <i class="fa-solid fa-bone"></i>
+                        <h3>Sprains & Strains</h3>
+                    </div>
+                    <div class="aid-body">
+                        <div class="aid-block block-do">
+                            <h4><i class="fa-solid fa-circle-check"></i> What to Do:</h4>
+                            <ul>
+                                <li><strong>Rest:</strong> Avoid putting weight on the injured joint/limb.</li>
+                                <li><strong>Ice:</strong> Apply a cold pack wrapped in cloth to reduce swelling.</li>
+                                <li><strong>Compress:</strong> Apply gentle elastic compression bandage if appropriate.</li>
+                                <li><strong>Elevate:</strong> Prop up injured limb above heart level when resting.</li>
+                            </ul>
+                        </div>
+
+                        <div class="aid-block block-dont">
+                            <h4><i class="fa-solid fa-circle-xmark"></i> What NOT to Do:</h4>
+                            <ul>
+                                <li>Do NOT apply ice directly to bare skin.</li>
+                                <li>Do NOT massage or apply heat during first 48 hours.</li>
+                            </ul>
+                        </div>
+
+                        <div class="aid-block block-seek">
+                            <h4><i class="fa-solid fa-hospital"></i> Seek Medical Help If:</h4>
+                            <p>Inability to bear any weight, joint deformity, severe numbness, or pain does not improve after a few days.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+                <span>PulseCare Health & Hygiene</span>
+            </div>
+            <p class="footer-disclaimer">Disclaimer: This portal is for informational & educational purposes only and does not replace professional medical advice. In an emergency, call your local emergency medical hotline immediately.</p>
+            <p class="footer-copyright">&copy; 2026 PulseCare Health Systems. Built with Care.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
